@@ -20,9 +20,40 @@ function adicionar() {
 }
 
 function sortear() {
-  // TODO validar escolher e exibir
+
+     if (amigos.length < 2) {
+        alert("É necessário ter pelo menos dois participantes.");
+        return;
+    }
+
+    const indice = Math.floor(Math.random() * amigos.length);
+    const escolhido = amigos[indice];
+
+    const resultado = document.getElementById("lista-sorteio");
+
+    const item = document.createElement("li");
+    item.textContent = escolhido;
+
+    resultado.appendChild(item);
+    
 }
 
 function reiniciar(evento) {
+  
+    if (evento) {
+        evento.preventDefault();
+    }
+
+    amigos.length = 0;
+
+    const campo = document.getElementById("nome-amigo");
+    const lista = document.getElementById("lista-amigos");
+    const resultado = document.getElementById("lista-sorteio");
+
+    campo.value = "";
+    lista.textContent = "";
+    resultado.replaceChildren();
+
+    campo.focus();
   // TODO impedir a navegação e restaurar o estado
 }
